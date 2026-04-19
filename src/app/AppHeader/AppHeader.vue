@@ -1,7 +1,7 @@
 <template>
   <div :class="$style.root">
     <img :class="$style.logo" :src="logo" alt="Weather App" />
-    <Button>Units</Button>
+    <Button iconLeft="icon-units" iconRight="icon-dropdown">Units</Button>
   </div>
 </template>
 

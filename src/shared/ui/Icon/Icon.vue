@@ -1,25 +1,20 @@
 <template>
     <SvgSprite
-        symbol="icon-units"
-        size="0 0 24 24"
+        :symbol="`${icon}`"
+        :size="`0 0 ${size} ${size}`"
         role="presentation"
         class="icon--inline"
     />
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue';
 import { SvgSprite } from 'vue-svg-sprite'
+import type { SvgIcons } from './svg-icons'
 
-const { icon } = defineProps<{
-    icon: 'units';
-}>();
-
-const paths = computed(() => ({
-    units: '@/assets/icon-units.svg',
-}))
-
-const currentPath = computed(() => paths.value[icon]);
+defineProps<{
+    icon: SvgIcons
+    size: number | `${number}`
+}>()
 </script>
 
 <style module lang="scss">
