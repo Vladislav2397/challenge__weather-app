@@ -1,5 +1,8 @@
 import { createApp } from 'vue'
-import './style.css'
 import App from './App.vue'
+import './shared/styles/index.scss'
+import { svgSpritePlugin } from 'vue-svg-sprite'
 
-createApp(App).mount('#app')
+createApp(App).use(svgSpritePlugin, {
+    url: '/assets/icons.svg',
+}).mount('#app')

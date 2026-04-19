@@ -1,0 +1,17 @@
+@use 'utils' as *;
+
+@forward 'reset';
+@forward 'theme';
+@forward 'typography';
+
+body {
+    color: var(--neutral-0);
+    background-color: var(--neutral-900);
+    font-size: rem(18);
+}
+
+button {
+    background: none;
+    border: none;
+    color: inherit;
+}
