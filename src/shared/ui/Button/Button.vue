@@ -22,21 +22,31 @@ const { size, theme } = defineProps<{
     iconLeft?: IconName
     iconRight?: IconName
     theme: 'primary' | 'secondary'
-    size: '34' | '56'
+    size: '34' | '38' | '56'
 }>()
 
 const textSizeClass = computed(() => {
     if (size === '34') return 'typo-text-4-custom'
+    if (size === '38') return 'typo-text-3'
 
     return 'typo-text-2'
+})
+
+const borderRadius = computed(() => {
+    if (size === '34') return pxToRem(6)
+    return pxToRem(12)
+})
+
+const backgroundColor = computed(() => {
+    if (theme === 'primary') return 'var(--blue-500)'
+    return 'var(--neutral-800)'
 })
 
 const styles = computed(() => {
     return {
         minHeight: pxToRem(+size),
-        borderRadius: size === '34' ? pxToRem(6) : pxToRem(12),
-        backgroundColor:
-            theme === 'primary' ? 'var(--blue-500)' : 'var(--neutral-800)',
+        borderRadius: borderRadius.value,
+        backgroundColor: backgroundColor.value,
     }
 })
 

@@ -27,12 +27,18 @@ import { Icon } from '../Icon'
     padding-right: rem(24);
     min-height: rem(54);
 }
+@media (min-width: 650px) {
+    .root {
+        //
+    }
+}
 
 input {
     background-color: transparent;
     border: none;
     flex-grow: 1;
     outline: none;
+    color: var(--neutral-0);
 
     &::placeholder {
         color: var(--neutral-300);
