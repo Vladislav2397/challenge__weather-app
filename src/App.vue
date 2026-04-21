@@ -32,11 +32,13 @@
                 label="Sunset"
                 value="18:00" /> -->
         </div>
+        <DailyForecast />
     </main>
 </template>
 
 <script setup lang="ts">
 import { AppHeader } from './app/AppHeader'
+import { DailyForecast } from './app/DailyForecast'
 import { Button } from './shared/ui/Button'
 import { InputSearch } from './shared/ui/InputSearch'
 import { WeatherOtherCard } from './shared/ui/WeatherOtherCard'
@@ -82,5 +84,6 @@ import { CurrentWeather } from './widgets/CurrentWeather'
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: rem(16);
+    margin-bottom: rem(30);
 }
 </style>

@@ -10,7 +10,9 @@
             </p>
             <div :class="$style.temperature">
                 <div :class="$style.icon">
-                    <!--  -->
+                    <WeatherIcon
+                        icon="sunny"
+                        size="120" />
                 </div>
                 <span class="typo-huge-1">20°</span>
             </div>
@@ -20,6 +22,7 @@
 
 <script lang="ts" setup>
 import background from '@/shared/images/bg-today-small.svg'
+import { WeatherIcon } from '@/shared/ui/WeatherIcon'
 </script>
 
 <style module lang="scss">
@@ -52,6 +55,7 @@ import background from '@/shared/images/bg-today-small.svg'
 .temperature {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     width: 100%;
 }
 </style>
