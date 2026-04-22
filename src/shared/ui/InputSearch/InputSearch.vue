@@ -41,7 +41,7 @@ input {
     color: var(--neutral-0);
 
     &::placeholder {
-        color: var(--neutral-300);
+        color: var(--neutral-200);
     }
 }
 </style>

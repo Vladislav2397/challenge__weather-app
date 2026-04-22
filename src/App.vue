@@ -1,7 +1,7 @@
 <template>
     <main :class="$style.root">
         <AppHeader />
-        <h1 :class="[$style.title, 'typo-heading-1']">
+        <h1 :class="[$style.title, $style['typo-heading-1']]">
             How’s the sky looking today?
         </h1>
         <div :class="$style.inputSearch">
@@ -45,13 +45,28 @@ import { CurrentWeather } from './widgets/CurrentWeather'
 }
 
 .title {
-    $padding: 16;
-
     text-align: center;
-    padding-top: rem(32);
-    padding-left: rem($padding);
-    padding-right: rem($padding);
+    padding: rem(32) rem(16) 0;
     margin-bottom: rem(50);
+
+    @media (min-width: 1440px) {
+        padding: rem(14) rem(16) 0;
+        margin-bottom: rem(62);
+    }
+}
+
+.typo-heading-1 {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 700;
+    font-size: 54px;
+    line-height: 62px;
+    letter-spacing: 1%;
+
+    @media (min-width: 1440px) {
+        font-size: 54px;
+        line-height: 65px;
+        letter-spacing: 0.5%;
+    }
 }
 
 .inputSearch {
@@ -59,6 +74,25 @@ import { CurrentWeather } from './widgets/CurrentWeather'
     flex-direction: column;
     gap: rem(12);
     margin-bottom: rem(32);
+
+    @media (min-width: 1440px) {
+        gap: rem(16);
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: rem(48);
+    }
+}
+
+.input {
+    @media (min-width: 1440px) {
+        min-width: rem(526);
+    }
+}
+.button {
+    @media (min-width: 1440px) {
+        min-width: rem(114);
+    }
 }
 
 .currentWeather {
