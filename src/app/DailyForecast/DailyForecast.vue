@@ -67,5 +67,9 @@ import { DailyForecastCard } from './DailyForecastCard'
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: rem(18);
+
+    @media (min-width: 1440px) {
+        grid-template-columns: repeat(7, 1fr);
+    }
 }
 </style>

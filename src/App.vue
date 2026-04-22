@@ -42,7 +42,7 @@ import { CurrentWeather } from './widgets/CurrentWeather'
 @media (min-width: 1440px) {
     .root {
         max-width: 1248px;
-        padding: 0 rem(16);
+        padding: 0 rem(16) rem(80);
     }
 }
 
