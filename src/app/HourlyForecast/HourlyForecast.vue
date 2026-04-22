@@ -58,7 +58,10 @@ import { Icon } from '@/shared/ui/Icon'
     padding: rem(20) rem(16);
     background-color: var(--neutral-800);
     border-radius: rem(20);
-    height: rem(684);
+
+    @media (min-width: 1440px) {
+        padding: rem(24) rem(25) rem(24);
+    }
 }
 
 .header {
@@ -66,6 +69,10 @@ import { Icon } from '@/shared/ui/Icon'
     align-items: center;
     justify-content: space-between;
     margin-bottom: rem(16);
+
+    @media (min-width: 1440px) {
+        margin-bottom: rem(18);
+    }
 }
 
 .button {
@@ -77,6 +84,10 @@ import { Icon } from '@/shared/ui/Icon'
     padding: 0 rem(16);
     background-color: var(--neutral-600);
     border-radius: rem(8);
+
+    @media (min-width: 1440px) {
+        min-height: rem(37);
+    }
 }
 
 .list {
