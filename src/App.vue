@@ -30,16 +30,18 @@ import { CurrentWeather } from './widgets/CurrentWeather'
 
 <style module lang="scss">
 .root {
-    $padding: 16;
-
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    padding-left: rem($padding);
-    padding-right: rem($padding);
-    padding-bottom: rem(56);
+    padding: 0 rem(16) rem(56);
     max-width: rem(650);
     margin: 0 auto;
+}
+@media (min-width: 1440px) {
+    .root {
+        max-width: 1246px;
+        padding: 0 rem(16);
+    }
 }
 
 .title {
