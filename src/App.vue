@@ -13,9 +13,11 @@
                 Search
             </Button>
         </div>
-        <CurrentWeather :class="$style.currentWeather" />
-        <DailyForecast :class="$style.dailyForecast" />
-        <HourlyForecast />
+        <div :class="$style.dashboard">
+            <CurrentWeather :class="$style.currentWeather" />
+            <DailyForecast :class="$style.dailyForecast" />
+            <HourlyForecast :class="$style.hourlyForecast" />
+        </div>
     </main>
 </template>
 
@@ -39,7 +41,7 @@ import { CurrentWeather } from './widgets/CurrentWeather'
 }
 @media (min-width: 1440px) {
     .root {
-        max-width: 1246px;
+        max-width: 1248px;
         padding: 0 rem(16);
     }
 }
@@ -95,11 +97,28 @@ import { CurrentWeather } from './widgets/CurrentWeather'
     }
 }
 
+.dashboard {
+    display: grid;
+    grid-template-areas: 'today' 'daily' 'hourly';
+    grid-template-columns: 1fr;
+    gap: rem(32);
+
+    @media (min-width: 1440px) {
+        grid-template-columns: auto rem(384);
+        grid-template-areas: 'today hourly' 'daily hourly';
+        gap: rem(44) rem(32);
+    }
+}
+
 .currentWeather {
-    margin-bottom: rem(30);
+    grid-area: today;
 }
 
 .dailyForecast {
-    margin-bottom: rem(32);
+    grid-area: daily;
+}
+
+.hourlyForecast {
+    grid-area: hourly;
 }
 </style>

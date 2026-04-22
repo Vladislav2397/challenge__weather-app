@@ -18,7 +18,7 @@ defineProps<{
     flex-direction: column;
     padding: rem(16) rem(20) rem(12);
     background-color: var(--neutral-800);
-    border-radius: rem(16);
+    border-radius: rem(12);
     box-shadow: 0 0 0 1px var(--neutral-700);
     gap: rem(14);
 }
