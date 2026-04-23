@@ -47,10 +47,15 @@
 </template>
 
 <script lang="ts" setup>
+import { forecastApi } from '@/shared/api'
 import { HourlyForecastRow } from './HourlyForecastRow'
 import { Icon } from '@/shared/ui/Icon'
+import { useQuery } from '@tanstack/vue-query'
 
-//
+const { data, isLoading } = useQuery({
+    queryKey: ['hourly-data'],
+    queryFn: () => forecastApi.getHourlyData(),
+})
 </script>
 
 <style module lang="scss">

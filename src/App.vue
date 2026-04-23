@@ -27,7 +27,10 @@ import { DailyForecast } from './app/DailyForecast'
 import { HourlyForecast } from './app/HourlyForecast'
 import { Button } from './shared/ui/Button'
 import { InputSearch } from './shared/ui/InputSearch'
-import { CurrentWeather } from './widgets/CurrentWeather'
+import { CurrentWeather } from './app/CurrentWeather'
+// import { useAppModel } from './app/model'
+
+// const { isLoading, data } = useAppModel()
 </script>
 
 <style module lang="scss">

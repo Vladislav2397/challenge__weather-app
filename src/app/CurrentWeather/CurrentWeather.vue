@@ -43,9 +43,15 @@
 </template>
 
 <script lang="ts" setup>
+// import { forecastApi } from '@/shared/api'
 import background from '@/shared/images/bg-today-small.svg'
 import { WeatherIcon } from '@/shared/ui/WeatherIcon'
 import { WeatherOtherCard } from '@/shared/ui/WeatherOtherCard'
+// import { useQuery } from '@tanstack/vue-query'
+// const { data, isLoading } = useQuery({
+//     queryKey: ['main-data'],
+//     queryFn: () => forecastApi.getMainData(),
+// })
 </script>
 
 <style module lang="scss">
