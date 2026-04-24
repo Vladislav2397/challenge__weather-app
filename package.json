@@ -10,6 +10,9 @@
   },
   "dependencies": {
     "@tanstack/vue-query": "^5.99.2",
+    "@withease/contracts": "^1.1.0",
+    "dayjs": "^1.11.20",
+    "reka-ui": "^2.9.6",
     "vue": "^3.5.32",
     "vue-svg-sprite": "^2.2.1"
   },

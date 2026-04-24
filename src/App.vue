@@ -108,6 +108,7 @@ import { CurrentWeather } from './app/CurrentWeather'
 
     @media (min-width: 1440px) {
         grid-template-columns: auto rem(384);
+        grid-template-rows: auto 1fr;
         grid-template-areas: 'today hourly' 'daily hourly';
         gap: rem(44) rem(32);
     }
