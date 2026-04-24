@@ -63,12 +63,11 @@ const dayOfWeekDate = computed(() => {
     return dayjs().day(convertDayOfWeekToNumber(day.value)).format('YYYY-MM-DD')
 })
 
-const { data } = useQuery({
+const { data, isLoading } = useQuery({
     queryKey: ['hourly-data', dayOfWeekDate],
     queryFn: () =>
         forecastApi.getHourlyData({ hourlyDate: dayOfWeekDate.value }),
 })
-const isLoading = true
 
 function getWeatherCategory(code: number): WeatherIconName {
     if ([0, 1].includes(code)) return 'sunny'
