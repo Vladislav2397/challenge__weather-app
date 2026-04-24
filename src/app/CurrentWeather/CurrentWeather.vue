@@ -10,16 +10,18 @@
                         Berlin, Germany
                     </h2>
                     <p :class="[$style.description, 'typo-text-3']">
-                        Tuesday, Aug 5, 2025
+                        {{ date }}
                     </p>
                 </div>
                 <div :class="$style.temperature">
                     <div :class="$style.icon">
                         <WeatherIcon
-                            icon="sunny"
+                            :icon="icon"
                             size="120" />
                     </div>
-                    <span class="typo-huge-1">20°</span>
+                    <span class="typo-huge-1">
+                        {{ Math.round(currentWeatherData.temperature) }}°
+                    </span>
                 </div>
             </div>
         </div>
@@ -43,15 +45,56 @@
 </template>
 
 <script lang="ts" setup>
-// import { forecastApi } from '@/shared/api'
+import { forecastApi } from '@/shared/api'
 import background from '@/shared/images/bg-today-small.svg'
-import { WeatherIcon } from '@/shared/ui/WeatherIcon'
+import { WeatherIcon, type WeatherIconName } from '@/shared/ui/WeatherIcon'
 import { WeatherOtherCard } from '@/shared/ui/WeatherOtherCard'
-// import { useQuery } from '@tanstack/vue-query'
-// const { data, isLoading } = useQuery({
-//     queryKey: ['main-data'],
-//     queryFn: () => forecastApi.getMainData(),
-// })
+import { useQuery } from '@tanstack/vue-query'
+import dayjs from 'dayjs'
+import { computed } from 'vue'
+
+const { data, isLoading } = useQuery({
+    queryKey: ['daily-data'],
+    queryFn: () => forecastApi.getMainData(),
+})
+
+/** @duplicate TODO: extract function to module and reuse */
+function getWeatherCategory(code: number): WeatherIconName {
+    if ([0, 1].includes(code)) return 'sunny'
+    if (code === 2) return 'partly-cloudy'
+    if (code === 3) return 'overcast'
+    if (code >= 45 && code <= 48) return 'fog'
+    if ([51, 53, 61, 63, 80, 81, 82].includes(code)) return 'rain'
+    if ([55, 65, 71, 73, 75].includes(code)) return 'snow'
+    if ([80, 81, 82].includes(code)) return 'storm'
+
+    // fallback
+    return 'overcast'
+}
+
+const icon = computed(() => {
+    return getWeatherCategory(currentWeatherData.value.weather_code)
+})
+
+const date = computed(() => {
+    return dayjs().format('dddd, MMM D, YYYY')
+})
+
+const currentWeatherData = computed(() => {
+    if (!data.value)
+        return {
+            time: '',
+            interval: 0,
+            apparent_temperature: 0,
+            relative_humidity_2m: 0,
+            wind_speed_10m: 0,
+            precipitation_probability: 0,
+            weather_code: 0,
+            temperature: 0,
+        }
+
+    return data.value.current
+})
 </script>
 
 <style module lang="scss">

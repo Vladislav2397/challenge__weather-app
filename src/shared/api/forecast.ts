@@ -6,9 +6,27 @@ import {
 const BASE_URL = 'https://api.open-meteo.com/v1/forecast'
 
 export const getMainData = async () => {
-    const response = await fetch(
-        `${BASE_URL}?latitude=52.52&longitude=13.41&current_weather=true&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,weather_code&forecast_days=7`,
+    const url = new URL(BASE_URL)
+    url.searchParams.set('latitude', '52.52')
+    url.searchParams.set('longitude', '13.41')
+    url.searchParams.set(
+        'daily',
+        ['temperature_2m_max', 'temperature_2m_min', 'weather_code'].join(','),
     )
+    url.searchParams.set('forecast_days', '7')
+    url.searchParams.set(
+        'current',
+        [
+            'apparent_temperature',
+            'relative_humidity_2m',
+            'wind_speed_10m',
+            'precipitation_probability',
+            'weather_code',
+            'temperature',
+        ].join(','),
+    )
+
+    const response = await fetch(url.toString())
 
     const data = await response.json()
 
