@@ -15,11 +15,10 @@
 import { WeatherIcon, type WeatherIconName } from '@/shared/ui/WeatherIcon'
 
 const { iconDay } = defineProps<{
-    day: 'Mon' | 'Tue' | 'Wed' | 'Thu' | 'Fri' | 'Sat' | 'Sun'
+    day: string
     temperatureDay: string
     temperatureNight: string
     iconDay: WeatherIconName
-    iconNight: string
 }>()
 </script>
 
