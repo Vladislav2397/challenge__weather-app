@@ -3,6 +3,6 @@ import { svgSpritePlugin } from 'vue-svg-sprite'
 
 export function withIconSprite(app: App) {
     app.use(svgSpritePlugin, {
-        url: '/src/shared/ui/Icon/sprite.svg',
+        url: '/challenge__weather-app/sprite.svg',
     })
 }

@@ -9,7 +9,7 @@ export default defineConfig({
         vue(),
         ViteSvgSpriteWrapper({
             icons: './src/shared/icons/*.svg',
-            outputDir: './src/shared/ui/Icon',
+            outputDir: './public',
             generateType: true,
             typeOutputDir: './src/shared/ui/Icon',
         }),

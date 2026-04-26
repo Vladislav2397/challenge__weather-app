@@ -3,8 +3,7 @@
         :symbol="`${icon}`"
         :size="`0 0 ${size} ${size}`"
         role="presentation"
-        class="icon--inline"
-    />
+        class="icon--inline" />
 </template>
 
 <script lang="ts" setup>
@@ -19,6 +18,6 @@ defineProps<{
 
 <style module lang="scss">
 .root {
-  //
+    //
 }
 </style>
