@@ -40,9 +40,7 @@ const { data, isLoading } = useQuery({
     queryFn: () =>
         forecastApi.getMainData({
             ...location.value,
-            temperatureUnit: units.value.temperature,
-            windSpeedUnit: units.value.windSpeed,
-            precipitationUnit: units.value.precipitation,
+            units: units.value,
         }),
 })
 
