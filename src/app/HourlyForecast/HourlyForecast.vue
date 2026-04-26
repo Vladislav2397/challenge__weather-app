@@ -147,7 +147,7 @@ const hourlyData = computed(() => {
     background-color: var(--neutral-700);
     border-radius: rem(8);
     padding: 0 rem(15) 0 rem(12);
-    box-shadow: 0 0 0 1px var(--neutral-600);
+    box-shadow: inset 0 0 0 1px var(--neutral-600);
     min-height: rem(58);
     animation: global(pulse) 1.5s infinite;
 }

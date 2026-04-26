@@ -28,19 +28,19 @@
         <WeatherOtherCard
             :class="$style.info"
             label="Feels Like"
-            value="18°" />
+            :value="`${Math.round(currentWeatherData.apparent_temperature)}°`" />
         <WeatherOtherCard
             :class="$style.info"
             label="Humidity"
-            value="46%" />
+            :value="`${currentWeatherData.relative_humidity_2m}%`" />
         <WeatherOtherCard
             :class="$style.info"
             label="Wind"
-            value="14 km/h" />
+            :value="`${Math.round(currentWeatherData.wind_speed_10m)} km/h`" />
         <WeatherOtherCard
             :class="$style.info"
             label="Precipitation"
-            value="0 mm" />
+            :value="`${currentWeatherData.precipitation_probability}%`" />
     </div>
 </template>
 
