@@ -1,5 +1,8 @@
 import * as C from '@withease/contracts'
 
+const optional = <T extends C.Contract<unknown, unknown>>(contract: T) =>
+    C.or(contract, C.nothing)
+
 export const dailyDataResponseContract = C.obj({
     current: C.obj({
         time: C.str,
@@ -29,4 +32,24 @@ export const hourlyDataResponseContract = C.obj({
         temperature_2m: C.arr(C.num),
         weather_code: C.arr(C.num),
     }),
+})
+
+export const searchCityResponseContract = C.obj({
+    results: optional(
+        C.arr(
+            C.obj({
+                id: C.num,
+                name: C.str,
+                latitude: C.num,
+                longitude: C.num,
+                country_code: C.str,
+                timezone: C.str,
+                country: C.str,
+                admin1: C.str,
+                admin2: optional(C.str),
+                admin3: optional(C.str),
+                admin4: optional(C.str),
+            }),
+        ),
+    ),
 })

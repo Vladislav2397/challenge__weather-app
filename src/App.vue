@@ -4,15 +4,7 @@
         <h1 :class="[$style.title, $style['typo-heading-1']]">
             How’s the sky looking today?
         </h1>
-        <div :class="$style.inputSearch">
-            <InputSearch :class="$style.input" />
-            <Button
-                :class="$style.button"
-                theme="primary"
-                size="56">
-                Search
-            </Button>
-        </div>
+        <SearchCity :class="$style.inputSearch" />
         <div :class="$style.dashboard">
             <CurrentWeather :class="$style.currentWeather" />
             <DailyForecast :class="$style.dailyForecast" />
@@ -25,12 +17,14 @@
 import { AppHeader } from './app/AppHeader'
 import { DailyForecast } from './app/DailyForecast'
 import { HourlyForecast } from './app/HourlyForecast'
-import { Button } from './shared/ui/Button'
-import { InputSearch } from './shared/ui/InputSearch'
 import { CurrentWeather } from './app/CurrentWeather'
+import { useLocationProvider } from './shared/lib/location'
+import { SearchCity } from './app/SearchCity'
 // import { useAppModel } from './app/model'
 
 // const { isLoading, data } = useAppModel()
+
+useLocationProvider()
 </script>
 
 <style module lang="scss">
@@ -75,28 +69,10 @@ import { CurrentWeather } from './app/CurrentWeather'
 }
 
 .inputSearch {
-    display: flex;
-    flex-direction: column;
-    gap: rem(12);
     margin-bottom: rem(32);
 
     @media (min-width: 1440px) {
-        gap: rem(16);
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
         margin-bottom: rem(48);
-    }
-}
-
-.input {
-    @media (min-width: 1440px) {
-        min-width: rem(526);
-    }
-}
-.button {
-    @media (min-width: 1440px) {
-        min-width: rem(114);
     }
 }
 

@@ -1,12 +1,13 @@
 import {
     dailyDataResponseContract,
     hourlyDataResponseContract,
+    searchCityResponseContract,
 } from './contracts/forecast'
 
-const BASE_URL = 'https://api.open-meteo.com/v1/forecast'
+const BASE_URL = 'https://api.open-meteo.com'
 
 export const getMainData = async () => {
-    const url = new URL(BASE_URL)
+    const url = new URL(BASE_URL + '/v1/forecast')
     url.searchParams.set('latitude', '52.52')
     url.searchParams.set('longitude', '13.41')
     url.searchParams.set(
@@ -40,13 +41,29 @@ export const getMainData = async () => {
 
 export const getHourlyData = async ({ hourlyDate }: { hourlyDate: string }) => {
     const response = await fetch(
-        `${BASE_URL}?latitude=52.52&longitude=13.41&hourly=temperature_2m,weather_code&start_hour=${hourlyDate}T00:00&end_hour=${hourlyDate}T23:00`,
+        `${BASE_URL + '/v1/forecast'}?latitude=52.52&longitude=13.41&hourly=temperature_2m,weather_code&start_hour=${hourlyDate}T00:00&end_hour=${hourlyDate}T23:00`,
     )
 
     const data = await response.json()
 
     if (!hourlyDataResponseContract.isData(data)) {
         console.error(hourlyDataResponseContract.getErrorMessages(data))
+        throw new Error('Invalid response')
+    }
+
+    return data
+}
+
+export const searchCity = async ({ search }: { search: string }) => {
+    const url = new URL('https://geocoding-api.open-meteo.com/v1/search')
+    url.searchParams.set('name', search)
+
+    const response = await fetch(url.toString())
+
+    const data = await response.json()
+
+    if (!searchCityResponseContract.isData(data)) {
+        console.error(searchCityResponseContract.getErrorMessages(data))
         throw new Error('Invalid response')
     }
 

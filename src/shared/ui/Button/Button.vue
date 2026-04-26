@@ -1,7 +1,8 @@
 <template>
     <button
         :class="[$style.root, textSizeClass]"
-        :style="styles">
+        :style="styles"
+        @click="emit('click', $event)">
         <Icon
             v-if="iconLeft"
             :icon="iconLeft"
@@ -53,6 +54,10 @@ const styles = computed(() => {
 function pxToRem(px: number) {
     return `${px / 16}rem`
 }
+
+const emit = defineEmits<{
+    click: [event: MouseEvent]
+}>()
 </script>
 
 <style module lang="scss">
@@ -65,5 +70,9 @@ function pxToRem(px: number) {
     background-color: var(--neutral-800);
     // border-radius: rem(6);
     padding: 0 rem(10);
+
+    &:active {
+        transform: scale(0.95);
+    }
 }
 </style>

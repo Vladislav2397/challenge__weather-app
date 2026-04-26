@@ -6,14 +6,19 @@
         <input
             :class="[$style.input, 'typo-text-2']"
             type="search"
-            placeholder="Search for a place..." />
+            placeholder="Search for a place..."
+            :value="value"
+            @input="onInput" />
     </div>
 </template>
 
 <script lang="ts" setup>
 import { Icon } from '../Icon'
 
-//
+const value = defineModel<string>('value', { required: true })
+function onInput(event: Event) {
+    value.value = (event.target as HTMLInputElement).value
+}
 </script>
 
 <style module lang="scss">
