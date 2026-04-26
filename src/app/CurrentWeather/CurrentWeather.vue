@@ -3,7 +3,8 @@
         <div :class="$style.card">
             <img
                 :class="$style.image"
-                :src="background" />
+                :srcset="`${backgroundMobile} 450w, ${backgroundDesktop} 1440w`"
+                :src="backgroundDesktop" />
             <div :class="$style.content">
                 <div :class="$style.header">
                     <h2 :class="[$style.title, 'typo-text-1']">
@@ -47,7 +48,8 @@
 <script lang="ts" setup>
 import { forecastApi } from '@/shared/api'
 import { useAppConfig } from '@/shared/config'
-import background from '@/shared/images/bg-today-small.svg'
+import backgroundMobile from '@/shared/images/bg-today-small.svg'
+import backgroundDesktop from '@/shared/images/bg-today-large.svg'
 import { useLocation } from '@/shared/lib/location'
 import { WeatherIcon, type WeatherIconName } from '@/shared/ui/WeatherIcon'
 import { WeatherOtherCard } from '@/shared/ui/WeatherOtherCard'
