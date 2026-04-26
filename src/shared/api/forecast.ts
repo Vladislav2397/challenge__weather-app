@@ -3,15 +3,18 @@ import {
     hourlyDataResponseContract,
     searchCityResponseContract,
 } from './contracts/forecast'
+import type { AppConfigUnits } from '@/shared/config'
 
 const BASE_URL = 'https://api.open-meteo.com'
 
 export const getMainData = async ({
     latitude,
     longitude,
+    units,
 }: {
     latitude: number
     longitude: number
+    units: AppConfigUnits
 }) => {
     const url = new URL(BASE_URL + '/v1/forecast')
     url.searchParams.set('latitude', latitude.toString())
@@ -32,6 +35,9 @@ export const getMainData = async ({
             'temperature',
         ].join(','),
     )
+    url.searchParams.set('temperature_unit', units.temperature)
+    url.searchParams.set('wind_speed_unit', units.windSpeed.replace(/\W/g, ''))
+    url.searchParams.set('precipitation_unit', units.precipitation)
 
     const response = await fetch(url.toString())
 
@@ -49,15 +55,18 @@ export const getHourlyData = async ({
     hourlyDate,
     latitude,
     longitude,
+    units,
 }: {
     hourlyDate: string
     latitude: number
     longitude: number
+    units: Pick<AppConfigUnits, 'temperature'>
 }) => {
     const url = new URL(BASE_URL + '/v1/forecast')
     url.searchParams.set('latitude', latitude.toString())
     url.searchParams.set('longitude', longitude.toString())
     url.searchParams.set('hourly', 'temperature_2m,weather_code')
+    url.searchParams.set('temperature_unit', units.temperature)
     url.searchParams.set('start_hour', `${hourlyDate}T00:00`)
     url.searchParams.set('end_hour', `${hourlyDate}T23:00`)
 

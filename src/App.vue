@@ -19,12 +19,11 @@ import { DailyForecast } from './app/DailyForecast'
 import { HourlyForecast } from './app/HourlyForecast'
 import { CurrentWeather } from './app/CurrentWeather'
 import { useLocationProvider } from './shared/lib/location'
+import { useAppConfigProvider } from './shared/config'
 import { SearchCity } from './app/SearchCity'
-// import { useAppModel } from './app/model'
-
-// const { isLoading, data } = useAppModel()
 
 useLocationProvider()
+useAppConfigProvider()
 </script>
 
 <style module lang="scss">

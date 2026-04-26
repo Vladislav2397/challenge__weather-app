@@ -36,7 +36,7 @@
         <WeatherOtherCard
             :class="$style.info"
             label="Wind"
-            :value="`${Math.round(currentWeatherData.wind_speed_10m)} km/h`" />
+            :value="`${Math.round(currentWeatherData.wind_speed_10m)} ${windSpeedLabel}`" />
         <WeatherOtherCard
             :class="$style.info"
             label="Precipitation"
@@ -46,6 +46,7 @@
 
 <script lang="ts" setup>
 import { forecastApi } from '@/shared/api'
+import { useAppConfig } from '@/shared/config'
 import background from '@/shared/images/bg-today-small.svg'
 import { useLocation } from '@/shared/lib/location'
 import { WeatherIcon, type WeatherIconName } from '@/shared/ui/WeatherIcon'
@@ -55,10 +56,21 @@ import dayjs from 'dayjs'
 import { computed } from 'vue'
 
 const { location } = useLocation()
+const { units } = useAppConfig()
 
 const { data } = useQuery({
-    queryKey: ['daily-data', location],
-    queryFn: () => forecastApi.getMainData(location.value),
+    queryKey: ['daily-data', location, units],
+    queryFn: () => {
+        console.log('units', units.value)
+        return forecastApi.getMainData({
+            ...location.value,
+            units: units.value,
+        })
+    },
+})
+
+const windSpeedLabel = computed(() => {
+    return units.value.windSpeed
 })
 
 /** @duplicate TODO: extract function to module and reuse */

@@ -1,4 +1,4 @@
-import { inject, provide, ref, type ComputedRef } from 'vue'
+import { inject, provide, type ComputedRef } from 'vue'
 import { useLocalStorage } from '@vueuse/core'
 
 const KEY = Symbol('location')

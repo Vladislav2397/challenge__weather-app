@@ -36,6 +36,7 @@ import { computed, ref } from 'vue'
 import dayjs from 'dayjs'
 import type { WeatherIconName } from '@/shared/ui/WeatherIcon'
 import { useLocation } from '@/shared/lib/location'
+import { useAppConfig } from '@/shared/config'
 
 const day = ref<DayOfWeek>(dayjs().format('dddd') as DayOfWeek)
 
@@ -65,14 +66,16 @@ const dayOfWeekDate = computed(() => {
 })
 
 const { location } = useLocation()
+const { units } = useAppConfig()
 
 const { data, isLoading } = useQuery({
-    queryKey: ['hourly-data', dayOfWeekDate],
+    queryKey: ['hourly-data', dayOfWeekDate, location, units],
     queryFn: () =>
         forecastApi.getHourlyData({
             hourlyDate: dayOfWeekDate.value,
             latitude: location.value.latitude,
             longitude: location.value.longitude,
+            units: units.value,
         }),
 })
 
