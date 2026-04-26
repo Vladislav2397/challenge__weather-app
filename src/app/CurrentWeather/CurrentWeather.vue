@@ -7,7 +7,7 @@
             <div :class="$style.content">
                 <div :class="$style.header">
                     <h2 :class="[$style.title, 'typo-text-1']">
-                        Berlin, Germany
+                        {{ location.name }}
                     </h2>
                     <p :class="[$style.description, 'typo-text-3']">
                         {{ date }}
@@ -47,15 +47,18 @@
 <script lang="ts" setup>
 import { forecastApi } from '@/shared/api'
 import background from '@/shared/images/bg-today-small.svg'
+import { useLocation } from '@/shared/lib/location'
 import { WeatherIcon, type WeatherIconName } from '@/shared/ui/WeatherIcon'
 import { WeatherOtherCard } from '@/shared/ui/WeatherOtherCard'
 import { useQuery } from '@tanstack/vue-query'
 import dayjs from 'dayjs'
 import { computed } from 'vue'
 
-const { data, isLoading } = useQuery({
-    queryKey: ['daily-data'],
-    queryFn: () => forecastApi.getMainData(),
+const { location } = useLocation()
+
+const { data } = useQuery({
+    queryKey: ['daily-data', location],
+    queryFn: () => forecastApi.getMainData(location.value),
 })
 
 /** @duplicate TODO: extract function to module and reuse */

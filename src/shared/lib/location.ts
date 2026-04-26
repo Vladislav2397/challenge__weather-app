@@ -1,4 +1,5 @@
 import { inject, provide, ref, type ComputedRef } from 'vue'
+import { useLocalStorage } from '@vueuse/core'
 
 const KEY = Symbol('location')
 
@@ -16,7 +17,7 @@ type LocationContext = {
 }
 
 export const useLocationProvider = () => {
-    const location = ref({
+    const location = useLocalStorage('weather-app/v1/current-location', {
         name: 'Berlin, Germany',
         latitude: 52.52,
         longitude: 13.41,

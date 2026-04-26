@@ -29,10 +29,13 @@ import { forecastApi } from '@/shared/api'
 import dayjs from 'dayjs'
 import { computed } from 'vue'
 import type { WeatherIconName } from '@/shared/ui/WeatherIcon'
+import { useLocation } from '@/shared/lib/location'
+
+const { location } = useLocation()
 
 const { data, isLoading } = useQuery({
     queryKey: ['daily-data'],
-    queryFn: () => forecastApi.getMainData(),
+    queryFn: () => forecastApi.getMainData(location.value),
 })
 
 function getWeatherCategory(code: number): WeatherIconName {

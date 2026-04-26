@@ -6,7 +6,7 @@
         <input
             :class="[$style.input, 'typo-text-2']"
             type="search"
-            placeholder="Search for a place..."
+            :placeholder="placeholder"
             :value="value"
             @input="onInput" />
     </div>
@@ -19,6 +19,10 @@ const value = defineModel<string>('value', { required: true })
 function onInput(event: Event) {
     value.value = (event.target as HTMLInputElement).value
 }
+
+defineProps<{
+    placeholder: string
+}>()
 </script>
 
 <style module lang="scss">

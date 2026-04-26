@@ -6,10 +6,16 @@ import {
 
 const BASE_URL = 'https://api.open-meteo.com'
 
-export const getMainData = async () => {
+export const getMainData = async ({
+    latitude,
+    longitude,
+}: {
+    latitude: number
+    longitude: number
+}) => {
     const url = new URL(BASE_URL + '/v1/forecast')
-    url.searchParams.set('latitude', '52.52')
-    url.searchParams.set('longitude', '13.41')
+    url.searchParams.set('latitude', latitude.toString())
+    url.searchParams.set('longitude', longitude.toString())
     url.searchParams.set(
         'daily',
         ['temperature_2m_max', 'temperature_2m_min', 'weather_code'].join(','),
@@ -39,10 +45,23 @@ export const getMainData = async () => {
     return data
 }
 
-export const getHourlyData = async ({ hourlyDate }: { hourlyDate: string }) => {
-    const response = await fetch(
-        `${BASE_URL + '/v1/forecast'}?latitude=52.52&longitude=13.41&hourly=temperature_2m,weather_code&start_hour=${hourlyDate}T00:00&end_hour=${hourlyDate}T23:00`,
-    )
+export const getHourlyData = async ({
+    hourlyDate,
+    latitude,
+    longitude,
+}: {
+    hourlyDate: string
+    latitude: number
+    longitude: number
+}) => {
+    const url = new URL(BASE_URL + '/v1/forecast')
+    url.searchParams.set('latitude', latitude.toString())
+    url.searchParams.set('longitude', longitude.toString())
+    url.searchParams.set('hourly', 'temperature_2m,weather_code')
+    url.searchParams.set('start_hour', `${hourlyDate}T00:00`)
+    url.searchParams.set('end_hour', `${hourlyDate}T23:00`)
+
+    const response = await fetch(url.toString())
 
     const data = await response.json()
 
