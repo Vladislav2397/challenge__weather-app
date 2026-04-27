@@ -4,7 +4,8 @@
             <img
                 :class="$style.image"
                 :srcset="`${backgroundMobile} 450w, ${backgroundDesktop} 1440w`"
-                :src="backgroundDesktop" />
+                :src="backgroundDesktop"
+                alt="Weather background" />
             <div :class="$style.content">
                 <div :class="$style.header">
                     <h2 :class="[$style.title, 'typo-text-1']">

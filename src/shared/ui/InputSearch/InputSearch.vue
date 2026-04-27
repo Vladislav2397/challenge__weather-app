@@ -6,6 +6,7 @@
         <input
             :class="[$style.input, 'typo-text-2']"
             type="search"
+            name="search"
             :placeholder="placeholder"
             :value="value"
             @input="onInput" />

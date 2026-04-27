@@ -6,6 +6,7 @@
         </div>
         <div
             :class="$style.list"
+            tabindex="0"
             v-if="isLoading">
             <div
                 v-for="i in 24"
@@ -14,6 +15,7 @@
         </div>
         <div
             v-else
+            tabindex="0"
             :class="$style.list">
             <template
                 v-for="item in hourlyData"

@@ -1,21 +1,22 @@
 <template>
     <DropdownMenuRoot>
-        <DropdownMenuTrigger>
-            <button :class="[$style.button, $style['typo-text-4']]">
+        <DropdownMenuTrigger asChild>
+            <button :class="[$style.btn, $style['typo-text-4']]">
                 <Icon
+                    :class="$style.byMobile"
                     icon="icon-units"
                     size="14" />
-                Units
                 <Icon
-                    icon="icon-dropdown"
-                    size="10" />
-            </button>
-            <button :class="[$style.buttonDesktop, $style['typo-text-4']]">
-                <Icon
+                    :class="$style.byDesktop"
                     icon="icon-units"
                     size="16" />
                 Units
                 <Icon
+                    :class="$style.byMobile"
+                    icon="icon-dropdown"
+                    size="10" />
+                <Icon
+                    :class="$style.byDesktop"
                     icon="icon-dropdown"
                     size="13" />
             </button>
@@ -155,6 +156,43 @@ const unitSystem = computed({
         padding: 0 rem(15);
         min-height: rem(42);
         cursor: pointer;
+    }
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: rem(6);
+    min-height: rem(34);
+    padding: 0 rem(12);
+    background-color: var(--neutral-600);
+    border-radius: rem(8);
+    cursor: pointer;
+
+    @media (min-width: 1440px) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: rem(10);
+        background-color: var(--neutral-600);
+        border-radius: rem(8);
+        padding: 0 rem(15);
+        min-height: rem(42);
+        cursor: pointer;
+    }
+}
+
+.byMobile {
+    display: block;
+    @media (min-width: 1440px) {
+        display: none;
+    }
+}
+.byDesktop {
+    display: none;
+    @media (min-width: 1440px) {
+        display: block;
     }
 }
 
