@@ -80,3 +80,15 @@ AI was used as a supporting tool for:
 - validating and refining architecture decisions;
 - speeding up refactoring and local improvements;
 - targeted help with debugging and documentation updates.
+
+## TODO for improve
+
+- Add geolocation detection to automatically show weather for the user's current location on first visit
+- Implement a favorites/saved locations system where users can bookmark frequently checked locations
+- Implement a "Compare Locations" feature to view weather side-by-side for multiple locations
+- Include UV index, visibility, and air pressure data (available via Open-Meteo)
+- Add sunrise/sunset times with visual indicators
+- Add animated weather backgrounds that change based on current conditions
+- Implement voice search functionality
+- Create dark/light mode themes that adapt to the time of day
+- Add progressive web app (PWA) capabilities for mobile installation
